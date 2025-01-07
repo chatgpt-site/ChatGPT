@@ -18,6 +18,7 @@
     <meta name="msvalidate.01" content="13FA48707DFB7A4DA2641B1733A668E8" />
     <link rel="icon" href="/openai.png" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -42,11 +43,56 @@
             max-width: 800px;
         }
         h1 {
+            font-family: 'Press Start 2P', cursive;
             font-size: 48px;
-            margin-bottom: 20px;
-            background: -webkit-linear-gradient(45deg, var(--color-1), var(--color-2));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-weight: 400;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            color: #fff;
+            text-shadow: 
+                2px 2px 0 var(--color-1),
+                4px 4px 0 var(--color-2);
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 1;
+            animation: pixelate 2s steps(10) infinite;
+            word-spacing: -0.3em;
+            line-height: 1.2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 60px;
+        }
+        @keyframes pixelate {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.02);
+            }
+        }
+        h1::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: inherit;
+            filter: blur(8px);
+            opacity: 0.3;
+            z-index: -1;
+        }
+        h2 {
+            font-size: 28px;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 30px;
+            line-height: 1.4;
+            font-weight: 500;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
         p {
             font-size: 24px;
@@ -56,13 +102,22 @@
         .button {
             display: inline-block;
             padding: 15px 30px;
-            background-color: #007bff;
+            background: linear-gradient(45deg, var(--color-1), var(--color-2));
+            background-size: 200% 200%;
+            animation: gradientButton 3s ease infinite;
+            border: 2px solid rgba(255,255,255,0.1);
+            box-shadow: 0 0 15px rgba(0,0,0,0.3);
             color: white;
             text-decoration: none;
             border-radius: 50px;
             font-size: 24px;
             font-weight: bold;
             transition: all 0.3s ease;
+        }
+        @keyframes gradientButton {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
         .button:hover {
             transform: scale(1.05);
@@ -77,6 +132,13 @@
             background: linear-gradient(45deg, var(--color-1), var(--color-2));
             z-index: -1;
             opacity: 0.8;
+            animation: gradientBG 15s ease infinite;
+            background-size: 400% 400%;
+        }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
         .arrow-down {
             position: absolute;
@@ -101,32 +163,61 @@
         /* New Section Styles */
         .markdown-content {
             padding: 40px;
-            background-color: #00A2E8;
+            background-color: #2a2a2a;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
             border-radius: 10px;
             margin: 20px auto;
             max-width: 800px;
+            color: #e0e0e0;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.1);
         }
-        .markdown-content h2 {
-            font-size: 36px;
-            margin-top: 20px;
+        .markdown-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .markdown-content h2, .markdown-content h3 {
+            color: #fff;
+            border-bottom: 2px solid #444;
+            padding-bottom: 10px;
+            margin-top: 30px;
         }
         .markdown-content p, .markdown-content li {
             font-size: 18px;
             line-height: 1.6;
+            color: #e0e0e0;
         }
         .markdown-content table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
-        }
-        .markdown-content th, .markdown-content td {
-            border: 1px solid #444;
-            padding: 10px;
-            text-align: left;
+            margin: 20px 0;
+            background-color: #333;
         }
         .markdown-content th {
-            background-color: #333;
+            background-color: #444;
+            color: #fff;
+            padding: 12px;
+            border: 1px solid #555;
+        }
+        .markdown-content td {
+            padding: 12px;
+            border: 1px solid #555;
+            color: #e0e0e0;
+        }
+        .markdown-content a {
+            color: #3a9eff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .markdown-content a:hover {
+            color: #66b5ff;
+            text-decoration: underline;
+        }
+        .markdown-content hr {
+            border: none;
+            border-top: 1px solid #444;
+            margin: 30px 0;
         }
 
         /* Mobile Styles */
@@ -137,7 +228,13 @@
                 padding-bottom: 20px;
             }
             h1 {
-                font-size: 36px;
+                font-size: 28px;
+                word-spacing: -0.2em;
+                line-height: 1.2;
+            }
+            h2 {
+                font-size: 20px;
+                padding: 0 20px;
             }
             p {
                 font-size: 18px;
@@ -167,14 +264,218 @@
                 display: none;
             }
         }
+
+        /* 表格动态效果 */
+        .markdown-content td, .markdown-content th {
+            transition: all 0.3s ease;
+        }
+
+        .markdown-content tr:hover td {
+            background-color: rgba(255,255,255,0.1);
+            transform: scale(1.01);
+        }
+
+        .pixel-robot {
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 30px;
+            position: relative;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .robot-head {
+            width: 80px;
+            height: 70px;
+            background: linear-gradient(135deg, #fff, #f0f0f0);
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 4px solid var(--color-1);
+            border-radius: 25px 25px 15px 15px;
+            box-shadow: inset 0 -8px 0 rgba(0,0,0,0.1);
+        }
+
+        .robot-eye {
+            width: 16px;
+            height: 20px;
+            background: var(--color-2);
+            position: absolute;
+            top: 22px;
+            border-radius: 50%;
+            animation: blink 3s infinite;
+            overflow: hidden;
+        }
+
+        .robot-eye::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #fff;
+            border-radius: 50%;
+            top: 4px;
+            left: 4px;
+            animation: eyeMove 4s infinite;
+        }
+
+        .robot-eye.left {
+            left: 18px;
+        }
+
+        .robot-eye.right {
+            right: 18px;
+        }
+
+        .robot-antenna {
+            width: 6px;
+            height: 18px;
+            background: var(--color-1);
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 3px;
+        }
+
+        .robot-antenna::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: var(--color-2);
+            border-radius: 50%;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: glow 1.5s infinite;
+            box-shadow: 0 0 10px var(--color-2);
+        }
+
+        .robot-mouth {
+            width: 30px;
+            height: 8px;
+            background: var(--color-1);
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 4px;
+            animation: smile 4s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-12px) rotate(2deg);
+            }
+        }
+
+        @keyframes blink {
+            0%, 45%, 55%, 100% {
+                transform: scaleY(1);
+                height: 20px;
+            }
+            50% {
+                transform: scaleY(0.1);
+                height: 2px;
+            }
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                opacity: 1;
+                transform: translateX(-50%) scale(1);
+            }
+            50% {
+                opacity: 0.6;
+                transform: translateX(-50%) scale(1.2);
+            }
+        }
+
+        @keyframes eyeMove {
+            0%, 100% {
+                transform: translate(0, 0);
+            }
+            25% {
+                transform: translate(2px, 2px);
+            }
+            75% {
+                transform: translate(-2px, -2px);
+            }
+        }
+
+        @keyframes smile {
+            0%, 100% {
+                border-radius: 4px;
+            }
+            50% {
+                height: 10px;
+                border-radius: 6px 6px 12px 12px;
+            }
+        }
+
+        /* 移动端适配 */
+        @media screen and (max-width: 767px) {
+            .pixel-robot {
+                width: 100px;
+                height: 100px;
+                margin-bottom: 20px;
+            }
+            .robot-head {
+                width: 60px;
+                height: 55px;
+            }
+            .robot-eye {
+                width: 12px;
+                height: 16px;
+                top: 18px;
+            }
+            .robot-eye.left {
+                left: 14px;
+            }
+            .robot-eye.right {
+                right: 14px;
+            }
+            .robot-eye::after {
+                width: 4px;
+                height: 4px;
+                top: 3px;
+                left: 3px;
+            }
+            .robot-antenna {
+                width: 4px;
+                height: 14px;
+                top: -16px;
+            }
+            .robot-antenna::before {
+                width: 8px;
+                height: 8px;
+                top: -6px;
+            }
+            .robot-mouth {
+                width: 24px;
+                height: 6px;
+                bottom: 12px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="background"></div>
     <div class="container">
         <div class="content">
+            <div class="pixel-robot">
+                <div class="robot-head">
+                    <div class="robot-antenna"></div>
+                    <div class="robot-eye left"></div>
+                    <div class="robot-eye right"></div>
+                    <div class="robot-mouth"></div>
+                </div>
+            </div>
             <h1>ChatGPT 中文版</h1>
-            <h2>2025年最新的 ChatGPT 中文版。无需翻墙、无需注册账号，畅享无障碍的 ChatGPT</h2>
+            <h2>2025年最新的 ChatGPT 中文版 | 支持 GPT-4 和 Claude | 无需翻墙 | 免费使用</h2>
             <a href="https://chat.lify.vip" target="_self" class="button">开始对话</a>
         </div>
         <div class="arrow-down" onclick="scrollToContent()">⬇️更多ChatGPT中文版镜像站</div>
@@ -365,7 +666,10 @@
             ['#ff4d4d', '#f9cb28'], 
             ['#7928ca', '#4c88e8'], 
             ['#4c88e8', '#4FE2B1'], 
-            ['#ff0080', '#ff7f00']  
+            ['#ff0080', '#ff7f00'],
+            ['#00ff88', '#4c88e8'],
+            ['#ff1493', '#4169e1'],
+            ['#ff4500', '#ffd700']
         ];
         const randomIndex = Math.floor(Math.random() * colors.length);
         const [color1, color2] = colors[randomIndex];
@@ -375,6 +679,92 @@
         function scrollToContent() {
             document.getElementById('more-content').scrollIntoView({ behavior: 'smooth' });
         }
+
+        // 新增：根据背景色调整内容区域样式
+        function adjustContentStyles() {
+            const markdownContent = document.querySelector('.markdown-content');
+            const style = document.createElement('style');
+            
+            // 根据不同的颜色组合设置对应的样式
+            if (color1.includes('ff0080') || color2.includes('ff0080')) {
+                // 粉色系
+                style.textContent = `
+                    .markdown-content {
+                        background-color: rgba(42, 42, 42, 0.9);
+                        border: 1px solid ${color1}40;
+                    }
+                    .markdown-content h2, .markdown-content h3 {
+                        color: ${color1};
+                    }
+                    .markdown-content a {
+                        color: ${color2};
+                    }
+                    .markdown-content th {
+                        background-color: ${color1}20;
+                    }
+                `;
+            } else if (color1.includes('4c88e8') || color2.includes('4c88e8')) {
+                // 蓝色系
+                style.textContent = `
+                    .markdown-content {
+                        background-color: rgba(42, 42, 42, 0.9);
+                        border: 1px solid ${color2}40;
+                    }
+                    .markdown-content h2, .markdown-content h3 {
+                        color: ${color2};
+                    }
+                    .markdown-content a {
+                        color: ${color1};
+                    }
+                    .markdown-content th {
+                        background-color: ${color2}20;
+                    }
+                `;
+            } else {
+                // 其他颜色组合
+                style.textContent = `
+                    .markdown-content {
+                        background-color: rgba(42, 42, 42, 0.9);
+                        border: 1px solid ${color1}40;
+                    }
+                    .markdown-content h2, .markdown-content h3 {
+                        color: ${color1};
+                    }
+                    .markdown-content a {
+                        color: ${color2};
+                    }
+                    .markdown-content th {
+                        background-color: ${color1}20;
+                    }
+                `;
+            }
+            
+            document.head.appendChild(style);
+        }
+
+        // 页面加载时执行
+        window.addEventListener('load', adjustContentStyles);
+
+        // 添加鼠标移动光效
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            document.documentElement.style.setProperty('--mouse-x', x);
+            document.documentElement.style.setProperty('--mouse-y', y);
+        });
+
+        // 添加页面滚动动画
+        window.addEventListener('scroll', () => {
+            const elements = document.querySelectorAll('.markdown-content *');
+            elements.forEach(element => {
+                const rect = element.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        });
     </script>
 </body>
 </html>
